@@ -62,9 +62,9 @@ Feature: avatar
     And user "anonymous" gets avatar for user "user0"
     And The following headers should be set
       | Content-Type | image/png |
-      | X-NC-IsCustomAvatar | 1 |
+      | X-NC-IsCustomAvatar | 0 |
     And last avatar is a square of size 512
-    And last avatar is a single "#FF0000" color
+    And last avatar is not a single color
 
   Scenario: set user avatar from internal path
     Given user "user0" uploads file "data/coloured-pattern.png" to "/internal-coloured-pattern.png"
@@ -85,9 +85,9 @@ Feature: avatar
     And user "anonymous" gets avatar for user "user0" with size "64"
     And The following headers should be set
       | Content-Type | image/png |
-      | X-NC-IsCustomAvatar | 1 |
+      | X-NC-IsCustomAvatar | 0 |
     And last avatar is a square of size 64
-    And last avatar is a single "#00FF00" color
+    And last avatar is not a single color
 
   Scenario: cropped user avatar needs to be squared
     Given Logging in using web as "user0"
@@ -117,9 +117,9 @@ Feature: avatar
     And user "anonymous" gets avatar for user "user0"
     And The following headers should be set
       | Content-Type | image/png |
-      | X-NC-IsCustomAvatar | 1 |
+      | X-NC-IsCustomAvatar | 0 |
     And last avatar is a square of size 512
-    And last avatar is a single "#FF0000" color
+    And last avatar is not a single color
     When logged in user deletes the user avatar
     Then user "user0" gets avatar for user "user0"
     And The following headers should be set
